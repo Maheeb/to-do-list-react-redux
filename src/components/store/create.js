@@ -24,8 +24,8 @@ const storeSlice = createSlice({
             state.toDos = newTodos;
         },
         removeToDo: (state,action) => {
-            const secondRemoved = state.toDos.filter((item) => item.id != action.payload);
-            state.toDos = secondRemoved;
+            const itemRemoved = state.toDos.filter((item) => item.id != action.payload);
+            state.toDos = itemRemoved;
         },
 
     }

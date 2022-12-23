@@ -34,7 +34,7 @@ const Main = () => {
         if (!value) return;
         dispatch(removeToDo(value));
     }
-    
+
     // console.log(toDos);
     return (
         <>
