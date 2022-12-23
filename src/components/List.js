@@ -1,21 +1,29 @@
 import {useEffect, useState} from "react";
+import {removeToDo} from "./store/create";
 
 const List = (props) => {
     let toDos = props.lists;
     const [selected, setSelected] = useState([]);
+    const [removed, setRemoved] = useState([]);
     const handleChange = (event) => {
         const value = event.target.value;
         setSelected( [value]);
     };
 
+    const removeItem = (value) => {
+        setRemoved( [value]);
+    };
 
     useEffect(()=>{
         props.isCompleted(selected);
+
     },[selected])
 
-    // if(toDos.length > 0) {
-    //     console.log(toDos[0].isDone);
-    // }
+    useEffect(()=>{
+        props.isRemoved(removed);
+    },[removed])
+
+
     return(
       <>
           <div className="list-wrapper">
@@ -35,7 +43,8 @@ const List = (props) => {
                               {value.text}
                               <i
                                   className="input-helper"></i></label></div>
-                          <i className="remove mdi mdi-close-circle-outline"></i>
+                          <i className="remove mdi mdi-close-circle-outline"  onClick={()=>removeItem(value.id)}   ></i>
+
                       </li>
                   ))}
               </ul>
